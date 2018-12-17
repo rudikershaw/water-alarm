@@ -9,7 +9,7 @@ To get the web server and service up and running on your machine, all you should
 
 1. Ensure JDK (Java Development Kit) 1.8 or laters is installed.
 2. Open a terminal in this directory.
-3. Run the command `./mvnw spring-boot:run`.
+3. Run the command `./mvnw spring-boot:run` (or `./mvnw.cmd spring-boot:run` on Windows).
 4. Once you see the message `Started WaterAlarmAppWebServiceApplication in X.XX seconds (JVM running for XX.XXX)` the web service is now up and running.
 5. Test the web service is running by going to `localhost:8080/water-alarm/update/test/true` in your web browser of choice.
 6. You should see some JSON returned that summarises the new status saved for `test`.
