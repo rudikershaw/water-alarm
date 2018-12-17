@@ -1,9 +1,9 @@
-#Water Alarm Web Service
+# Water Alarm Web Service
 The web service in this directory is designed to act as a relay of information between the water detector hardware, and the mobile application.
 
 The hardware will send updates on it's status to the web service, and the mobile application will query this web service to check for changes before reporting to the mobile user.
 
-##Getting it running
+## Getting it running
 
 To get the web server and service up and running on your machine, all you should need to do is;
 
