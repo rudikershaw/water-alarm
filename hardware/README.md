@@ -1,7 +1,7 @@
 # Required Parts
 ![Visual of required parts](documentation/parts.jpg "Required parts")
 
-Pictured above (approximately left-to-right);
+### Pictured above (approximately left-to-right);
 * Female PCB header x2 (at least 8 sockets in length)
 * 220 ohm resistor x2
 * 100k ohm resistror
@@ -13,7 +13,7 @@ Pictured above (approximately left-to-right);
 * NodeMCU ESP8266 development board 
 * Solder
 
-Additionally you will likely need;
+### Additionally you will likely need;
 * Soldering iron
 * Wire cutters
 * Wire stripper
