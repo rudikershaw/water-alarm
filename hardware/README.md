@@ -28,7 +28,7 @@ The hardware for the water alarm consists primarily of a NodeMCU ESP8266 develop
 
 ## Assembly and Installation
 
-Using the schematic below and a [solderless breadboard](http://wiring.org.co/learning/tutorials/breadboard/), assemble the basic components of the water alarm and connect them up to your NodeMCU ESP8266 development board.
+Using the schematic below and a [solderless breadboard](http://wiring.org.co/learning/tutorials/breadboard/), assemble the basic components of the water alarm and connect them up to your NodeMCU ESP8266 development board. Please note, the switch labelled `Water detector` need only be two unconnected loose wires for the time being. When these two loose wires make contact with water a circuit is completed an the alarm will trigger. We will convert them to something more robust when we get to soldering it all down.
 
 ![Schematic for the detector](documentation/schematic.jpg "Alarm Schematic")
 
