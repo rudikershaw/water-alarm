@@ -32,7 +32,17 @@ Using the schematic below and a [solderless breadboard](http://wiring.org.co/lea
 
 ![Schematic for the detector](documentation/schematic.jpg "Alarm Schematic")
 
-Once everything is connected as shown above, will want to flash the `water-alarm.ino` file in this directory onto your board ready for testing. To do this you will need the [Arduino IDE](https://www.arduino.cc/en/main/software) installed, and you will need to follow the instruction for installing the ESP8266 boards on the IDE in order to flash software onto it. You can find instruction for installing these boards [here](https://arduino-esp8266.readthedocs.io/en/latest/installing.html#installing).
+Once everything is connected as shown above, you will want to flash the `water-alarm.ino` file in this directory onto your board ready for testing. To do this you will need the [Arduino IDE](https://www.arduino.cc/en/main/software) installed, and you will need to follow the instructions for installing the ESP8266 boards on the IDE in order to flash software onto it. You can find instructions for installing these boards using the `Boards Manager`[here](https://arduino-esp8266.readthedocs.io/en/latest/installing.html#installing).
 
+Once the appropriate ESP8266 boards have been installed in your Arduino IDE;
+
+1. Plug the NodeMCU ESP8266 development board into your computer via USB with data.
+2. Open your Arduino IDE (if you have not already).
+3. From the toolbar select File > Open and then choose the water-alarm.ino from this directory.
+4. From the toolbar select Tools > Port > Your port.
+5. Change the `SSID`, `PASSWORD`, `host`, and `uuid` variables to your own values**.
+6. From the toolbar select Sketch > Upload.
+
+> ** The `SSID` is for your wireless connection, `PASSWORD` is the password for your wifi, `host` is the domain name of your web service which you should have set up prior to setting the hardware up, and `uuid` is a universally unique identifier. You can generate a `uuid` from [here](https://www.uuidgenerator.net/version4).  
 
 
