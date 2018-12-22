@@ -1,13 +1,13 @@
 # Water Alarm Web Service
 The web service in this directory is designed to act as a relay of information between the water detector hardware, and the mobile application.
 
-The hardware will send updates on it's status to the web service, and the mobile application will query this web service to check for changes before reporting to the mobile user.
+The hardware will send updates on it's status to the web service, and the mobile application will query this web service to check for changes before reporting to the mobile user. lt is important that you set the web service up first before the hardware or mobile app, as you will need it to test them.
 
 ## Getting it running
 
 To get the web server and service up and running on your machine, all you should need to do is;
 
-1. Ensure JDK (Java Development Kit) 1.8 or laters is installed.
+1. Ensure JDK (Java Development Kit) 1.8 or later is installed.
 2. Open a terminal in this directory.
 3. Run the command `./mvnw spring-boot:run` (or `./mvnw.cmd spring-boot:run` on Windows).
 4. Once you see the message `Started WaterAlarmAppWebServiceApplication in X.XX seconds (JVM running for XX.XXX)` the web service is now up and running.
