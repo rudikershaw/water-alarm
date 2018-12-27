@@ -45,4 +45,4 @@ Once the appropriate ESP8266 boards have been installed in your Arduino IDE;
 
 > ** The `SSID` is for your wireless connection, `PASSWORD` is the password for your wifi, `host` is the domain name of your web service which you should have set up prior to setting the hardware up, and `uuid` is a universally unique identifier. You can generate a `uuid` from [here](https://www.uuidgenerator.net/version4).  
 
-
+Once the program has finished uploading to the device, the white LED should start to flash to indicate that is connecting to the WIFI. Once it has connected the white LED should be fully illuminated as long as the connection holds. Touch the two loose wires of the water detector into some water and hold them there for up to 30 seconds. The red LED should illuminate to indicate that water was detected. You should now be able to query your web service (as described in the web service instructions) using the device UUID and see that water was detected. 
