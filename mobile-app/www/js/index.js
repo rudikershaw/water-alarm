@@ -6,12 +6,14 @@ var app = {
 
     // deviceready Event Handler
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        alert("Yep, it worked.");
+        var storage = window.localStorage;
+        var domain = storage.getItem('domain');
+        var uuid = storage.getItem('uuid');
+        if (domain && uuid && uuid.length > 0) {
+            // Use details to check with web service for water status.
+        } else {
+            document.getElementsByClassName('form-container')[0].classList.remove('hide');
+        }
     }
 };
 

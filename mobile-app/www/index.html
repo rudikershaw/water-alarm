@@ -11,7 +11,22 @@
     <body>
         <div class="app">
             <h1>Water Alarm</h1>
-            <p>Enter your details below:</p>
+
+            <form class="form-container hide">
+                <fieldset>
+                    <legend><strong>Enter your details below</strong>:</legend>
+                    <p class="form-row">
+                        <label>Domain</label>
+                        <input name="domain"/>
+                    </p>
+                    <p class="form-row">
+                        <label>Alarm UUID</label>
+                        <input name="uuid"/>
+                    </p>
+                    <button class="save-details">Save</button>
+                </fieldset>
+            </form>
+
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
