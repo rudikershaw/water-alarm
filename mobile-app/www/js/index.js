@@ -4,8 +4,8 @@ var app = new (function() {
     var selectAll = document.querySelectorAll.bind(document);
     var storage = window.localStorage;
 
-    this.domain = "";
-    this.uuid = "";
+    var domain = "";
+    var uuid = "";
 
     // Application Constructor
     this.initialize = function() {
@@ -35,7 +35,10 @@ var app = new (function() {
                 selectAll('.form-container')[0].classList.add('hide');
                 showAlarmStatus();
             } else {
-                // Add invalid class to inputs.
+                var inputs = selectAll('.form-container input');
+                for (var i = 0; i < inputs.length; i++) {
+                    inputs[i].classList.add('invalid');
+                }
             }
         });
     };
