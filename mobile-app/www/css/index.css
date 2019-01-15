@@ -19,7 +19,7 @@ body {
 }
 
 .app {
-    padding: 40px 30px 0 30px;
+    padding: 40px 15px 0 15px;
     text-align:center;
 }
 
@@ -66,11 +66,9 @@ button {
 }
 
 .form-row > * {
+    width: 100%;
     flex-grow: 1;
-}
-
-.form-row > label {
-    width: 90px;
+    padding-right: 5px;
 }
 
 .hide {
