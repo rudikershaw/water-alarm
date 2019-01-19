@@ -56,7 +56,12 @@ button {
     color: #FFF;
 }
 
-.form-container {
+button.settings {
+    border-radius: 20px;
+    float:right;
+}
+
+.container {
     margin: auto;
     max-width: 500px;
 }
@@ -73,4 +78,8 @@ button {
 
 .hide {
     display: none;
+}
+
+.hidden {
+    visibility: hidden;
 }
