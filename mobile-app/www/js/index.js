@@ -6,12 +6,12 @@ var app = new (function() {
     var domain = "";
     var uuid = "";
 
-    // Application Constructor
+    /** Initialize the application. */
     this.initialize = function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     };
 
-    // deviceready Event Handler
+    /** Handles preparing to be performed when the device is ready. */
     this.onDeviceReady = function() {
         domain = window.localStorage.getItem('domain');
         uuid = window.localStorage.getItem('uuid');
@@ -45,6 +45,7 @@ var app = new (function() {
         }
     };
 
+    /** Shows the application settings form and performs associated UI manipulation. */
     var showDetailsForm = function() {
         select('#domain-details-input').value = domain;
         select('#uuid-details-input').value = uuid;
@@ -53,24 +54,27 @@ var app = new (function() {
         select('.alarm-status').classList.add('hide');
     };
 
+    /** Normalizes the domain variable cached in the app object. */
     var standardizeDomain = function() {
         if (domain.indexOf('/', domain.length - 1) === -1) {
             domain = domain + '/';
         }
-
+        // If domain doesn't contain the correct scheme.
         if (!(new RegExp("^(http|https)://", "i").test(domain))) {
             domain = 'http://' + domain;
         }
     };
 
+    /** Shows the status / home page and performs associated UI manipulation. */
     var showAlarmStatus = function() {
         select('.alarm-status p').innerHTML = 'Loading...';
-        showStatusMessage();
+        updateAlarmStatus();
         select('button.settings').classList.remove('hidden');
         select('.alarm-status').classList.remove('hide');
     };
 
-    var showStatusMessage = function() {
+    /** Request the alarm status from the domain's web service and update the UI. */
+    var updateAlarmStatus = function() {
         var ajax = new XMLHttpRequest();
         ajax.open('GET', domain + 'water-alarm/query/' + uuid);
         ajax.onload = function() {
@@ -79,8 +83,12 @@ var app = new (function() {
             } else if (ajax.status === 404) {
                 select('.alarm-status p').innerHTML = '404';
             } else {
-                select('.alarm-status p').innerHTML = 'Something went wrong';
+                select('.alarm-status p').innerHTML = 'Something unexpected has happened';
             }
+        };
+        ajax.onerror = function () {
+            select('.alarm-status p').innerHTML = 'An error has occurred. Please check that ' +
+                                                  'your domain setting is correct';
         };
         ajax.send();
     };
