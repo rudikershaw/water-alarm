@@ -85,26 +85,42 @@ var app = new (function() {
                     if (jsonResponse.hasOwnProperty('water')) {
                         if (jsonResponse.water) {
                             select('.alarm-status p').innerHTML = 'Warning! Water detected!';
+                            notify();
                         } else {
-                            select('.alarm-status p').innerHTML = 'No water detected';
+                            select('.alarm-status').innerHTML = '<p>No water detected</p>' +
+                                                                '<p>' + jsonResponse.lastContact + '</p>';
                         }
                     } else {
-                        select('.alarm-status p').innerHTML = 'Something unexpected has happened';
+                        somethingUnexpectedHappened();
                     }
                 } catch (error) {
-                    select('.alarm-status p').innerHTML = 'Something unexpected has happened';
+                    somethingUnexpectedHappened();
                 }
             } else if (ajax.status === 404) {
-                select('.alarm-status p').innerHTML = '404';
+                select('.alarm-status p').innerHTML = 'Alarm details not found';
             } else {
-                select('.alarm-status p').innerHTML = 'Something unexpected has happened';
+                somethingUnexpectedHappened();
             }
         };
         ajax.onerror = function () {
-            select('.alarm-status p').innerHTML = 'An error has occurred. Please check that ' +
-                                                  'your domain setting is correct';
+            somethingUnexpectedHappened();
         };
         ajax.send();
+    };
+
+    /** Display the 'something unexpected happened' message to the user. */
+    var somethingUnexpectedHappened = function() {
+        select('.alarm-status p').innerHTML = 'Something unexpected has happened. Please check ' +
+                                              'that your domain settings are correct';
+    };
+
+    /** Notifies the user using push notification. */
+    var notify = function() {
+        cordova.plugins.notification.local.schedule({
+            title: 'Warning!',
+            text: 'Water detected!',
+            foreground: true
+        });
     };
 })();
 

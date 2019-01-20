@@ -19,5 +19,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <plugin name="cordova-plugin-local-notification" spec="https://github.com/katzer/cordova-plugin-local-notifications.git">
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="26.+" />
+    </plugin>
     <engine name="android" spec="^7.1.4" />
 </widget>
