@@ -77,9 +77,23 @@ var app = new (function() {
     var updateAlarmStatus = function() {
         var ajax = new XMLHttpRequest();
         ajax.open('GET', domain + 'water-alarm/query/' + uuid);
+        ajax.setRequestHeader('Accept', 'application/json; q=0');
         ajax.onload = function() {
             if (ajax.status === 200) {
-                select('.alarm-status p').innerHTML = '200';
+                try {
+                    var jsonResponse = JSON.parse(ajax.responseText);
+                    if (jsonResponse.hasOwnProperty('water')) {
+                        if (jsonResponse.water) {
+                            select('.alarm-status p').innerHTML = 'Warning! Water detected!';
+                        } else {
+                            select('.alarm-status p').innerHTML = 'No water detected';
+                        }
+                    } else {
+                        select('.alarm-status p').innerHTML = 'Something unexpected has happened';
+                    }
+                } catch (error) {
+                    select('.alarm-status p').innerHTML = 'Something unexpected has happened';
+                }
             } else if (ajax.status === 404) {
                 select('.alarm-status p').innerHTML = '404';
             } else {
