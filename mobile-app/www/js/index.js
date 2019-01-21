@@ -43,6 +43,14 @@ var app = new (function() {
         } else {
             showDetailsForm();
         }
+
+        setTimeout(repeatUpdate, 30000);
+    };
+
+    /** Recursively repeat request to update alarm status. */
+    var repeatUpdate = function() {
+        updateAlarmStatus();
+        setTimeout(repeatUpdate, 30000);
     };
 
     /** Shows the application settings form and performs associated UI manipulation. */
@@ -87,8 +95,7 @@ var app = new (function() {
                             select('.alarm-status p').innerHTML = 'Warning! Water detected!';
                             notify();
                         } else {
-                            select('.alarm-status').innerHTML = '<p>No water detected</p>' +
-                                                                '<p>' + jsonResponse.lastContact + '</p>';
+                            select('.alarm-status p').innerHTML = 'No water detected';
                         }
                     } else {
                         somethingUnexpectedHappened();
