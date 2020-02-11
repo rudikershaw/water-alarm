@@ -4,6 +4,18 @@ Open source hardware and software water alarm with app which notifies you when w
 
 The hardware for the water alarm consists primarily of a NodeMCU ESP8266 development board, and a makeshift shield that supports the water detecting probe and two status LED. At the time of writing this, the consumable components for building the water alarm hardware costed approximately £8, including post and packaging. It is worth noting however that many of these components cannot be bought as singular items. Although a white LED costs approximately £0.10, you will find it difficult to buy a single white LED.
 
+## App Setup
+
+In order to receive notifications to a device, we will be using [Pushover](https://pushover.net/).
+
+* Navigate to the [pushover website](https://pushover.net/).
+* Sign up for an account.
+* Create a new application.
+* Subscribe to your application.
+* Take note of the application API token, and your user token.
+
+You can now install pushover on your device of choice (Android/IOs) and login. You will be on a 7 day free trail for receiving notifications from your new application. Once you have confirmed your water alarm is working, you can use a 1 time purchase to permanently use pushover for receiving notifications on this device (£4.70 at the time or writing).
+
 ## Required Parts
 ![Visual of required parts](documentation/parts.jpg "Required parts")
 
@@ -42,9 +54,9 @@ Once the appropriate ESP8266 boards have been installed in your Arduino IDE;
 2. Open your Arduino IDE (if you have not already).
 3. From the toolbar select File > Open and then choose the water-alarm.ino from this directory.
 4. From the toolbar select Tools > Port > Your port.
-5. Change the `SSID`, `PASSWORD`, `host`, and `uuid` variables to your own values**.
+5. Change the `SSID`, `PASSWORD`, `APPLICATION_TOKEN`, and `USER_TOKEN` variables to your own values**.
 6. From the toolbar select Sketch > Upload.
 
-> ** The `SSID` is for your wireless connection, `PASSWORD` is the password for your wifi, `host` is the domain name of your web service which you should have set up prior to setting the hardware up, and `uuid` is a universally unique identifier. You can generate a `uuid` from [here](https://www.uuidgenerator.net/version4).  
+> ** The `SSID` is for your wireless connection, `PASSWORD` is the password for your wifi, `APPLICATION_TOKEN` is the API token for your pushover application that you should have set up prior to setting the hardware up, and `USER_TOKEN` is a pushover user or user-group token.  
 
-Once the program has finished uploading to the device, the white LED should start to flash to indicate that is connecting to the WIFI. Once it has connected the white LED should be fully illuminated as long as the connection holds. Touch the two loose wires of the water detector into some water and hold them there for up to 30 seconds. The red LED should illuminate to indicate that water was detected. You should now be able to query your web service (as described in the web service instructions) using the device UUID and see that water was detected.
+Once the program has finished uploading to the device, the white LED should start to flash to indicate that is connecting to the WIFI. Once it has connected the white LED should be fully illuminated as long as the connection holds. Touch the two loose wires of the water detector into some water and hold them there for up to 30 seconds. The red LED should illuminate to indicate that water was detected. You should now receive a notification on the device via the Pushover app.

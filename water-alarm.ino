@@ -9,8 +9,8 @@
 #define SSID "FILL_IN_WIFI_SSID_HERE"
 #define PASSWORD "PASSWORD_HERE"
 
-const String host = "www.example.com";
-const String uuid = "3x4mp1e-uu1D-4489-9e78-6c78ca1d47c5";
+const String APPLICATION_TOKEN = "APPLICATION_TOKEN_HERE";
+const String USER_TOKEN = "USER_TOKEN_HERE";
 
 bool alarm = false;
 WiFiClientSecure client;
@@ -29,7 +29,7 @@ void setup() {
 
   WiFi.disconnect(true);
   WiFi.begin(SSID, PASSWORD);
-  
+
   Serial.print("Wifi connecting to ");
   Serial.println(SSID);
   connecting();
@@ -51,35 +51,41 @@ void loop() {
   digitalWrite(ALARM_POWER, LOW);
 }
 
-void connecting() {  
+void connecting() {
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println();
     Serial.print("Connecting");
-   
+
     while(WiFi.status() != WL_CONNECTED) {
       digitalWrite(CONNECTION_LED, HIGH);
-      delay(500);                     
+      delay(500);
       digitalWrite(CONNECTION_LED, LOW);
-      delay(500); 
-      Serial.print("."); 
+      delay(500);
+      Serial.print(".");
     }
-    
+
     digitalWrite(CONNECTION_LED, HIGH);
     Serial.println();
-    Serial.println("Connected");  
-  } 
+    Serial.println("Connected");
+  }
 }
 
 void postUpdate(String parameter) {
-  if (client.connect(host, 443)) {
-    
-    Serial.println("Connected to " + host);
-    
-    client.println("GET /water-alarm/update/" + uuid + "/" + parameter + " HTTP/1.1");
-    client.println("Host: " + host);
+  if (client.connect("api.pushover.net", 443)) {
+
+    Serial.println("Connected to api.pushover.net");
+
+    client.println("GET /1/messages.json HTTP/1.1");
+    client.println("Host: api.pushover.net");
     client.println("Connection: close");
     client.println("User-Agent: ESP8266-water-alarm");
-    client.println("");  
+    client.println("");
+    client.print("token=" + APPLICATION_TOKEN);
+    client.print("&user=" + USER_TOKEN);
+    client.print("&title=Water%20Detected");
+    client.print("&message=Water%20was%20detected%20by%20your%20alarm");
+    client.print("&priority=1");
+    client.println("");
 
     long timeout = millis() + 2000;
     long timeNow = 0;
