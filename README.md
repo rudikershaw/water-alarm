@@ -60,3 +60,13 @@ Once the appropriate ESP8266 boards have been installed in your Arduino IDE;
 > ** The `SSID` is for your wireless connection, `PASSWORD` is the password for your wifi, `APPLICATION_TOKEN` is the API token for your pushover application that you should have set up prior to setting the hardware up, and `USER_TOKEN` is a pushover user or user-group token.  
 
 Once the program has finished uploading to the device, the white LED should start to flash to indicate that is connecting to the WIFI. Once it has connected the white LED should be fully illuminated as long as the connection holds. Touch the two loose wires of the water detector into some water and hold them there for up to 30 seconds. The red LED should illuminate to indicate that water was detected. You should now receive a notification on the device via the Pushover app.
+
+Once you've confirmed your setup is working correctly, it is time to solder everything down and finalize your build.
+
+## Final Touches
+
+### The Water Detector
+
+You can make do with just two loose wires if you so desire, but it is possible that they will eventually oxidise and stop conducting. A more robust and permanent solution is to solder a stainless steal plates to each wire and fix them at a specific width apart. You can increase the surface area of the plates by punching small holes or strips into each. This ensures they stay conductive for longer.
+
+![Water Detector](documentation/detector.jpg "Water Detector")
