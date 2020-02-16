@@ -6,13 +6,12 @@
 #define CONNECTION_LED D0
 #define ALARM_LED D3
 
-#define SSID "FILL_IN_WIFI_SSID_HERE"
-#define PASSWORD "PASSWORD_HERE"
+#define SSID "WIFI_SSID_HERE"
+#define PASSWORD "WIFI_PASSWORD_HERE"
 
 const String APPLICATION_TOKEN = "APPLICATION_TOKEN_HERE";
 const String USER_TOKEN = "USER_TOKEN_HERE";
 
-bool alarm = false;
 WiFiClientSecure client;
 
 void setup() {
@@ -29,32 +28,28 @@ void setup() {
 
   WiFi.disconnect(true);
   WiFi.begin(SSID, PASSWORD);
-
-  Serial.print("Wifi connecting to ");
-  Serial.println(SSID);
-  connecting();
 }
 
 void loop() {
   connecting();
-  delay(30000);
   digitalWrite(ALARM_POWER, HIGH);
+
   if (digitalRead(ALARM_INPUT) == HIGH) {
-    alarm = true;
     digitalWrite(ALARM_LED, HIGH);
-    postUpdate("true");
+    postUpdate();
+    delay(240000);
   } else {
     digitalWrite(ALARM_LED, LOW);
-    alarm = false;
-    postUpdate("false");
   }
   digitalWrite(ALARM_POWER, LOW);
+  delay(30000);
 }
 
 void connecting() {
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println();
-    Serial.print("Connecting");
+    Serial.print("Connecting to ");
+    Serial.println(SSID);
 
     while(WiFi.status() != WL_CONNECTED) {
       digitalWrite(CONNECTION_LED, HIGH);
@@ -70,31 +65,29 @@ void connecting() {
   }
 }
 
-void postUpdate(String parameter) {
+void postUpdate() {
+  Serial.println("Connecting to api.pushover.net...");
+  client.setInsecure();
+  String body = "token=" + APPLICATION_TOKEN + "&user=" + USER_TOKEN
+              + "&title=Water%20Detected&message=Water%20was%20detected%20by%20your%20alarm&priority=1";
+  String contentLength = "Content-Length: ";
+  contentLength += body.length();
+
   if (client.connect("api.pushover.net", 443)) {
+    Serial.println("Connected");
 
-    Serial.println("Connected to api.pushover.net");
-
-    client.println("GET /1/messages.json HTTP/1.1");
+    client.println("POST /1/messages.json HTTP/1.1");
     client.println("Host: api.pushover.net");
-    client.println("Connection: close");
     client.println("User-Agent: ESP8266-water-alarm");
-    client.println("");
-    client.print("token=" + APPLICATION_TOKEN);
-    client.print("&user=" + USER_TOKEN);
-    client.print("&title=Water%20Detected");
-    client.print("&message=Water%20was%20detected%20by%20your%20alarm");
-    client.print("&priority=1");
-    client.println("");
+    client.println("Content-Type: application/x-www-form-urlencoded");
+    client.println(contentLength);
+    client.println();
+    client.print(body);
+    client.println();
 
-    long timeout = millis() + 2000;
-    long timeNow = 0;
-
-    while ((timeNow = millis()) < timeout) {
-      while (client.available()) {
-        char c = client.read();
-        Serial.print(c);
-      }
-    }
+    client.flush();
+    Serial.println(client.readString());
+  } else {
+    Serial.println("Failed to connect");
   }
 }
