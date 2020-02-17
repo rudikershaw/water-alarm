@@ -73,13 +73,13 @@ You can make do with just two loose wires if you so desire, but it is possible t
 
 ### The Makeshift Shield
 
-Although not strictly essential to the functioning of the device, you might want to solder this all down and make it a bit more permanent. But, you probably don't want to make it so permanent that you can't re-use the Node MCU micro-controller.
+Although not strictly essential to the functioning of the device, you might want to solder this all down and make it a bit more permanent. But you probably don't want to make it so permanent that you can't re-use the Node MCU micro-controller.
 
 To that end, we can solder the circuit, and some pin headers, onto a universal board and then use the headers to attach the full soldered circuit to the micro-controller. This "makeshift shield" can then be added to, and removed from, the micro-controller easily.
 
 ![Adding Headers](documentation/shield-start.jpg "Adding Headers")
 
-Position the headers on the universal breadboard (as above) and check that this intended position will allow you attach the headers to your micro-controller. Once you are sure you have the correct position, solder down a few choice pins on the headers so that they stay in place.
+Position the headers on the universal breadboard (as above) and check that this intended position will allow you to attach the headers to your micro-controller. Once you are sure you have the correct position, solder down a few choice pins on the headers so that they stay in place.
 
 From here, reproduce the circuit you got working on the breadboard on your new universal PCB and solder it down. You should end up with something like the following:
 
@@ -91,4 +91,4 @@ The 2 pin screw terminal can be used to attach the water detector to your new sh
 
 Given that your device will likely sit somewhere damp, and will likely get wet in the event that it detects water, it is best to add some water proofing.
 
-It is up to you how you achieve this, but an easy fix is to put the device in a tupperware like container, drill small holes for the power and detector cables, and then use some kind of water proof sealant to seal up the wholes.
+It is up to you how you achieve this, but an easy fix is to put the device in a tupperware like container, drill small holes for the power and detector cables, and then use some kind of water proof sealant to seal up the holes.
