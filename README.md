@@ -1,4 +1,4 @@
-# Water Alarm with Mobile App
+# Water Alarm with Mobile Notifications
 
 Open source hardware and software water alarm with app which notifies you when water is detected.
 
